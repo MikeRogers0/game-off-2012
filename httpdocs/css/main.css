@@ -6,17 +6,37 @@
 
 
 
+#game-off{
+	margin: 0 auto;
+	background: #fff;
+	border: 1px solid #000;
+	width: 800px;
+	height: 400px;
+	position: relative;
+}
+#game-off canvas{
+	width: 800px;
+	height: 400px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: none;
+}
 
-
-
-
-
-
-
-
-
-
-
+	#gf-background{
+		z-index: 10;
+		background: #bcdbff;
+	}
+	#gf-level{
+		z-index: 20;
+		background: none;
+	}
+	#gf-player{
+		z-index: 30;
+		background: none;
+	}
 
 
 
