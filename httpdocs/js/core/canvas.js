@@ -1,5 +1,5 @@
-var canvas = [];
-var ctx = [];
+var canvas = {};
+var ctx = {};
 canvas['background'] = null
 canvas['level'] = null;
 canvas['player'] = null;

@@ -2,11 +2,11 @@ function Brick(location, size, pattern){
 	this.location = location ? location : {
 		x: 25,
 		y: 375
-	}
+	};
 	this.size = size ? size : {
 		w: 80,
 		h: 90
-	}
+	};
 	this.pattern = pattern ? pattern : 'brick';
 	this.ctx = ctx['level']; // Bricks are locked to the level layer.
 	
