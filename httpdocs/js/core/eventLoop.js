@@ -2,13 +2,13 @@ var timeout = null;
 
 function gameLoop(){
 	if(keys[65]){ // A
-		player[0].left();
+		player[0].addLeft();
 	}
 	if(keys[68]){ // D
-		player[0].right();
+		player[0].addRight();
 	}
 	if(keys[87]){ // W
-		player[0].jump();
+		player[0].addJump();
 	}
 	
 	player[0].physicsMomentum();
