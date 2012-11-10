@@ -50,7 +50,7 @@ Player.prototype.addLeft = function(){
 	if(this.momentum.x >= -20){
 		this.momentum.x -= 2;
 		if(this.touching.ground){
-			this.momentum.x -= 8;
+			this.momentum.x -= 7;
 		}
 	}
 }
@@ -58,7 +58,7 @@ Player.prototype.addRight = function(){
 	if(this.momentum.x <= 20){
 		this.momentum.x += 2;
 		if(this.touching.ground){
-			this.momentum.x += 8;
+			this.momentum.x += 7;
 		}
 	}
 }
@@ -145,23 +145,27 @@ Player.prototype.gravityMomentum = function(){
 Player.prototype.leftRightMomentum = function(){
 	//debugger;
 	if(this.momentum.x < 0){
-		if(this.momentum.x < -5){
+		if(this.momentum.x < -4){
 			this.momentum.x += 1;
 			if(this.touching.ground){
-				this.momentum.x += 3;
+				this.momentum.x += 1;
 			}
 		}
 		this.collisionLeft();
 	}
 	if(this.momentum.x > 0){
-		if(this.momentum.x > 5){
+		if(this.momentum.x > 4){
 			this.momentum.x -= 1;
 			if(this.touching.ground){
-				this.momentum.x -= 3;
+				this.momentum.x -= 1;
 			}
 		}
 		this.collisionRight();
 	}
+	if(this.momentum.x > -2 && this.momentum.x < 2){
+		this.momentum.x = 0;
+	}
+	
 	this.location.x += this.momentum.x;
 }
 
