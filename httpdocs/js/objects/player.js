@@ -162,7 +162,8 @@ Player.prototype.leftRightMomentum = function(){
 		}
 		this.collisionRight();
 	}
-	if(this.momentum.x > -2 && this.momentum.x < 2){
+	
+	if(this.touching.ground && (this.momentum.x > -5 && this.momentum.x < 5)){
 		this.momentum.x = 0;
 	}
 	
