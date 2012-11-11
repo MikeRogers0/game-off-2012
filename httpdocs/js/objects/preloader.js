@@ -2,24 +2,24 @@
 evt = document.createEvent('Event');
 evt.initEvent('preLoaderCompleted',true,true);
 var patterns = {};
-var playerImgs = {};
+var objectsImgs = {};
 
 function preLoader(){
 	this.patterns = {'brick':true};
-	this.playerImgs = {'normal':true};
+	this.objectsImgs = {'normal':true, 'fork':true};
 	this.totalElements = 0;
 	this.totalElementsLoaded = 0;
 }
 
-preLoader.prototype.addPattern = function(name){
+preLoader.prototype.addObject = function(name){
 	if(this.patterns[name] == undefined){
 		this.patterns[name] = true;
 	}
 }
 
 preLoader.prototype.addPlayer = function(name){
-	if(this.playerImgs[name] == undefined){
-		this.playerImgs[name] = true;
+	if(this.objectsImgs[name] == undefined){
+		this.objectsImgs[name] = true;
 	}
 }
 
@@ -33,11 +33,11 @@ preLoader.prototype.load = function(){
 	}
 	
 	// Load the player
-	for(var i in this.playerImgs){
+	for(var i in this.objectsImgs){
 		this.totalElements++;
-		playerImgs[i] = new Image();
-		playerImgs[i].onload = function(){preLoader.loaded()};
-		playerImgs[i].src = 'res/player/'+i+'.png';
+		objectsImgs[i] = new Image();
+		objectsImgs[i].onload = function(){preLoader.loaded()};
+		objectsImgs[i].src = 'res/objects/'+i+'.png';
 	}
 }
 

@@ -10,10 +10,6 @@ function Player(location){
 		w: 40,
 		h: 50
 	};
-	/*this.momentum = {
-		x: 0,
-		y: 0
-	};*/
 	this.state = 'normal';
 	this.ctx = ctx['player'];
 	this.canvas = canvas['player'];
@@ -65,7 +61,7 @@ Player.prototype.addRight = function(){
 Player.prototype.addJump = function(){
 	if(this.momentum.y <= (this.size.h * 0.5) && this.touching.ground){
 		this.touching.ground = false;
-		this.momentum.y = this.size.h * 0.6;
+		this.momentum.y = this.size.h;
 	}
 }
 
@@ -104,7 +100,7 @@ Player.prototype.collisionAbove = function(){
 
 Player.prototype.collisionLeft = function(){
 	this.touching.left = false;
-	imgData = ctx['level'].getImageData((this.location.x + this.momentum.x), (this.location.y + (this.size.h / 2)), (this.momentum.x * -1), 1);
+	imgData = ctx['level'].getImageData((this.location.x + this.momentum.x), (this.location.y + (this.size.h - 1)), (this.momentum.x * -1), 1);
 	pixelCollision = this.pixelCollision(imgData.data);
 	if(pixelCollision === false){
 		return;
@@ -116,7 +112,7 @@ Player.prototype.collisionLeft = function(){
 
 Player.prototype.collisionRight = function(){
 	this.touching.right = false;
-	imgData = ctx['level'].getImageData((this.location.x + this.size.w), (this.location.y + (this.size.h / 2)), (this.momentum.x), 1);
+	imgData = ctx['level'].getImageData((this.location.x + this.size.w), (this.location.y + (this.size.h -1)), (this.momentum.x), 1);
 	pixelCollision = this.pixelCollision(imgData.data);
 	if(pixelCollision === false){
 		return;
@@ -127,8 +123,8 @@ Player.prototype.collisionRight = function(){
 
 Player.prototype.gravityMomentum = function(){
 	// Add the extra gravity accelerator in:
-	if(this.momentum.y > -20){
-		this.momentum.y += -5;
+	if(this.momentum.y > -30){
+		this.momentum.y += -10;
 	}
 	
 	if(this.momentum.y < 0){
@@ -148,7 +144,7 @@ Player.prototype.leftRightMomentum = function(){
 		if(this.momentum.x < -4){
 			this.momentum.x += 1;
 			if(this.touching.ground){
-				this.momentum.x += 1;
+				this.momentum.x += 3;
 			}
 		}
 		this.collisionLeft();
@@ -157,13 +153,13 @@ Player.prototype.leftRightMomentum = function(){
 		if(this.momentum.x > 4){
 			this.momentum.x -= 1;
 			if(this.touching.ground){
-				this.momentum.x -= 1;
+				this.momentum.x -= 3;
 			}
 		}
 		this.collisionRight();
 	}
 	
-	if(this.touching.ground && (this.momentum.x > -5 && this.momentum.x < 5)){
+	if(this.touching.ground && (this.momentum.x > -4 && this.momentum.x < 4)){
 		this.momentum.x = 0;
 	}
 	
@@ -180,6 +176,6 @@ Player.prototype.physicsMomentum = function(){
 Player.prototype.draw = function(){
 	this.ctx.save();
 	this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
- 	this.ctx.drawImage(playerImgs[this.state], this.location.x, this.location.y, this.size.w, this.size.h);
+ 	this.ctx.drawImage(objectsImgs[this.state], this.location.x, this.location.y, this.size.w, this.size.h);
  	this.ctx.restore();
 };
