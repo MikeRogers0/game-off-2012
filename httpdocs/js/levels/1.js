@@ -8,8 +8,8 @@ bricks[1] = new Brick({x:0, y:340}, {w: 1600, h:80});
 //bricks[4] = new Brick({x:0, y:0}, {w: 1600, h:20});
 
 // Now some bits to jump over
-bricks[5] = new Brick({x:160, y:280});
-bricks[6] = new Brick({x:280, y:280});
+bricks[5] = new Brick({x:160, y:280}, {w: 60, h:60});
+bricks[6] = new Brick({x:280, y:280}, {w: 60, h:60});
 
 var player = [];
 player[0] = new Player;

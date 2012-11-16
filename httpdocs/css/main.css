@@ -23,7 +23,7 @@
 	left: 0;
 	background: none;
 	overflow: hidden;
-	/*transition: margin 0.2s linear;*/
+	transition: margin 0.2s swing;
 }
 
 	#gf-level3d{
