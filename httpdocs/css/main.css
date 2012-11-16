@@ -13,6 +13,7 @@
 	width: 800px;
 	height: 400px;
 	position: relative;
+	overflow: hidden;
 }
 #game-off canvas{
 	width: 800px;
@@ -24,6 +25,7 @@
 	right: 0;
 	background: none;
 	overflow: hidden;
+	/*transition: margin 0.2s linear;*/
 }
 
 	#gf-background{

@@ -19,87 +19,171 @@ function Player(location){
 		x: 0,
 		y: 0
 	}
+	this.addMomentum = {
+		x: 7,
+		xAir: -5,
+		y: 15
+	}
+	this.maxMomentum = {
+		x: 10,
+		y: 15
+	}
+	this.dragMomentum = {
+		x: -2,
+		xGround: -2, // When the user is touching the ground, add a bit more.
+		y: 1 // Gravity.
+	}
 	
 	this.touching = {
-		ground: false,
-		left: false,
-		right: false
+		ground: false
 	};
 }
 
-Player.prototype.isOverlapping = function (){
-	var imgData = ctx['level'].getImageData(10, 10, 1, 1);
+/**
+ * When a user presses left/right/jump buttons account for it.
+ */
+Player.prototype.addLeft = function(){
+	if(this.momentum.x >= (this.maxMomentum.x * -1)){
+		this.momentum.x -= this.addMomentum.x;
+		if(!this.touching.ground){
+			this.momentum.x -= this.addMomentum.xAir;
+		}
+	}
+}
+Player.prototype.addRight = function(){
+	if(this.momentum.x <= (this.maxMomentum.x)){
+		this.momentum.x += this.addMomentum.x;
+		if(!this.touching.ground){
+			this.momentum.x += this.addMomentum.xAir;
+		}
+	}
+}
+Player.prototype.addJump = function(){
+	if(this.momentum.y <= (this.maxMomentum.y) && this.touching.ground){
+		this.touching.ground = false;
+		this.momentum.y -= this.addMomentum.y;
+	}
 }
 
+/**
+ * Add in gravity & wind resistance to the momentum.
+ */
+Player.prototype.addDrag = function(){
+	// Moving Right.
+	if(this.momentum.x > 0){
+		this.momentum.x += this.dragMomentum.x;
+		if(this.touching.ground){
+			this.momentum.x += this.dragMomentum.xGround;
+		}
+		if(this.momentum.x < 0){ // If they are now going the other way
+			this.momentum.x = 0;
+		}
+	}
+	// Moving left.
+	if(this.momentum.x < 0){
+		this.momentum.x -= this.dragMomentum.x;
+		if(this.touching.ground){
+			this.momentum.x -= this.dragMomentum.xGround;
+		}
+		if(this.momentum.x > 0){
+			this.momentum.x = 0;
+		}
+	}
+	
+	// Gravity.
+	this.momentum.y += this.dragMomentum.y;
+}
+
+/**
+ * Checks if a collision with a level object occoured, if it does it reduces the momentum to stop it.
+ */
+Player.prototype.checkCollision = function(){
+	// Check around the player on the level.
+	this.groundCollision(); 
+	this.collisionAbove();
+	this.collisionLeft();
+	this.collisionRight();
+	
+	// Check if the user is going outside the canvas
+	this.boundaryCollision();
+}
+
+/**
+ * Does the pixel check for me.
+ */
 Player.prototype.pixelCollision = function pixelCollision(pix){
 	for (var i = 0; n = pix.length, i < n; i += 4) {
 		if (pix[i] != 0) {
-			return i;
-			return true; // Returns the amount of pixels we are away.
+			return (i / 4); // Returns the amount of pixels we are away.
+			//return true; 
 		}
 	}
 	return false;
 }
 
-Player.prototype.addLeft = function(){
-	// Check if the move would collide us with anything
-	if(this.momentum.x >= -20){
-		this.momentum.x -= 2;
-		if(this.touching.ground){
-			this.momentum.x -= 7;
-		}
+Player.prototype.boundaryCollision = function(){
+	xLocation = (this.location.x + this.momentum.x);
+	yLocation = (this.location.y + this.momentum.y);
+	
+	// Check user going left / right.
+	if(xLocation <= 1){
+		this.momentum.x = 2;
 	}
-}
-Player.prototype.addRight = function(){
-	if(this.momentum.x <= 20){
-		this.momentum.x += 2;
-		if(this.touching.ground){
-			this.momentum.x += 7;
-		}
+	if(xLocation >= (this.canvas.width - this.size.w)){
+		this.momentum.x = -2;
 	}
-}
-Player.prototype.addJump = function(){
-	if(this.momentum.y <= (this.size.h * 0.5) && this.touching.ground){
-		this.touching.ground = false;
-		this.momentum.y = this.size.h;
+	
+	// Now up and down
+	if(yLocation <= 1){
+		this.momentum.y = 2;
+	}
+	if(yLocation >= (this.canvas.height - this.size.h)){
+		this.momentum.y = -2;
 	}
 }
 
-Player.prototype.collisionBelow = function(){
+Player.prototype.groundCollision = function(){
 	this.touching.ground = false;
 	
+	if(this.momentum.y <= 0){
+		return;
+	}
+	
 	// Check if we going to collide in the next move
-	imgData = ctx['level'].getImageData((this.location.x + (this.size.w / 2)), (this.location.y + this.size.h), 1, (this.momentum.y * -1));
+	imgData = ctx['level'].getImageData((this.location.x), (this.location.y + this.size.h), this.size.w, this.momentum.y);
 	
 	pixelCollision = this.pixelCollision(imgData.data);
 	if(pixelCollision === false){
 		return;
 	}
-	//debugger;
-	if(pixelCollision < 10){
-		this.touching.ground = true;
-		this.momentum.y = 0;
-	} else {
-		this.momentum.y = ((pixelCollision / 4) * -1);
-	}
+	
+	this.touching.ground = true;
+	this.momentum.y = 0;
+	//this.momentum.y = (pixelCollision * -1);
 }
 
 Player.prototype.collisionAbove = function(){
-	//this.touching.ground = false;
+
+	if(this.momentum.y >= 0){
+		return;
+	}
 	
 	// Check if we going to collide in the next move
-	imgData = ctx['level'].getImageData((this.location.x + (this.size.w / 2)), (this.location.y), 1, (this.momentum.y));
+	imgData = ctx['level'].getImageData((this.location.x + (this.size.w / 2)), (this.location.y), this.size.w, (this.momentum.y));
 	
 	pixelCollision = this.pixelCollision(imgData.data);
 	if(pixelCollision === false){
 		return;
 	}
-	//this.touching.ground = true;
+	
 	this.momentum.y = 0;
+	//this.momentum.y = (pixelCollision);
 }
 
 Player.prototype.collisionLeft = function(){
-	this.touching.left = false;
+	if(this.momentum.x >= 0){
+		return;
+	}
 	imgData = ctx['level'].getImageData((this.location.x + this.momentum.x), (this.location.y + (this.size.h - 1)), (this.momentum.x * -1), 1);
 	pixelCollision = this.pixelCollision(imgData.data);
 	if(pixelCollision === false){
@@ -107,75 +191,56 @@ Player.prototype.collisionLeft = function(){
 	}
 	
 	this.touching.left = true;
-	this.momentum.x = ((pixelCollision / 4) * -1);
+	this.momentum.x = 0;
+	//this.momentum.x = (pixelCollision * -1);
 }
 
 Player.prototype.collisionRight = function(){
-	this.touching.right = false;
+	if(this.momentum.x <= 0){
+		return;
+	}
 	imgData = ctx['level'].getImageData((this.location.x + this.size.w), (this.location.y + (this.size.h -1)), (this.momentum.x), 1);
 	pixelCollision = this.pixelCollision(imgData.data);
 	if(pixelCollision === false){
 		return;
 	}
 	this.touching.right = true;
-	this.momentum.x = ((pixelCollision / 4));
+	this.momentum.x = 0
+	//this.momentum.x = (pixelCollision);
 }
 
-Player.prototype.gravityMomentum = function(){
-	// Add the extra gravity accelerator in:
-	if(this.momentum.y > -30){
-		this.momentum.y += -10;
-	}
-	
-	if(this.momentum.y < 0){
-		this.collisionBelow();
-	}
-	
-	//if(this.momentum.y > 0){
-	//	this.collisionAbove();
-	//}
-	
-	this.location.y -= this.momentum.y;
-}
-
-Player.prototype.leftRightMomentum = function(){
-	//debugger;
-	if(this.momentum.x < 0){
-		if(this.momentum.x < -4){
-			this.momentum.x += 1;
-			if(this.touching.ground){
-				this.momentum.x += 3;
-			}
+Player.prototype.moveCanvas = function(){
+	// Move them on x axis.
+	// If they are in moveable zones.
+	if(this.location.x > 400 && this.location.x < (this.canvas.width - 400)){
+		for(i in {'level':true, 'bullets':true, 'player':true}){
+			canvas[i].style.marginLeft = '-'+(this.location.x - 400)+'px';
 		}
-		this.collisionLeft();
 	}
-	if(this.momentum.x > 0){
-		if(this.momentum.x > 4){
-			this.momentum.x -= 1;
-			if(this.touching.ground){
-				this.momentum.x -= 3;
-			}
+	if(this.location.y > 200 && this.location.y < (this.canvas.height - 200)){
+		for(i in {'level':true, 'bullets':true, 'player':true}){
+			canvas[i].style.marginTop = '-'+(this.location.y - 200)+'px';
 		}
-		this.collisionRight();
 	}
-	
-	if(this.touching.ground && (this.momentum.x > -4 && this.momentum.x < 4)){
-		this.momentum.x = 0;
-	}
-	
-	this.location.x += this.momentum.x;
-}
-
-Player.prototype.physicsMomentum = function(){
-	// These cycle through the momentum avialable, if we have a pixel collision reduce the momentum to that point.
-	this.gravityMomentum();
-	this.leftRightMomentum();
-}
-
+} 
 
 Player.prototype.draw = function(){
+	// Update player location
+	this.location.x += this.momentum.x;
+	this.location.y += this.momentum.y;
+
 	this.ctx.save();
 	this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
  	this.ctx.drawImage(objectsImgs[this.state], this.location.x, this.location.y, this.size.w, this.size.h);
  	this.ctx.restore();
 };
+
+Player.prototype.refresh = function(){
+	//debugger;
+	this.addDrag();
+	//console.log('With Drag', this.momentum);
+	this.checkCollision();
+	//console.log('After Collisions', this.momentum);
+	this.draw();
+	this.moveCanvas();
+}

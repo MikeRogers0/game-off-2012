@@ -11,9 +11,7 @@ function gameLoop(){
 		player[0].addJump();
 	}
 	
-	player[0].physicsMomentum();
+	player[0].refresh();
 	
-	player[0].draw();
-	
-	timeout = window.setTimeout(gameLoop, 100) // ~10 frames per second.
+	timeout = window.setTimeout(gameLoop, 50) // ~20 frames per second.
 }
