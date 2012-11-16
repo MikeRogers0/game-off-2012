@@ -15,20 +15,18 @@
 	position: relative;
 	overflow: hidden;
 }
-#game-off canvas{
+#game-off > *{
 	width: 800px;
 	height: 400px;
 	position: absolute;
 	top: 0;
 	left: 0;
-	bottom: 0;
-	right: 0;
 	background: none;
 	overflow: hidden;
 	/*transition: margin 0.2s linear;*/
 }
 
-	#gf-background{
+	#gf-level3d{
 		z-index: 10;
 	}
 	#gf-level{
@@ -37,6 +35,17 @@
 	#gf-player{
 		z-index: 30;
 	}
-
-
-
+	
+	ul#gf-hud{
+		z-index: 40;
+		background: rgba(0,0,0, 0.4);
+		height: auto;
+		color: #fff;
+		margin: 0;
+		padding: 5px 10px;
+		list-style: none;
+	}
+		ul#gf-hud li{
+			float: left;
+			margin-right: 50px;
+		}

@@ -1,6 +1,6 @@
 // Resize the canvas.
 //debugger;
-for(i in {'level':true, 'bullets':true, 'player':true}){
+for(i in {'level3d':true, 'level':true, 'bullets':true, 'player':true}){
 	canvas[i].style.width = '1600px';
 	canvas[i].style.height = '400px';
 	canvas[i].width = 1600;

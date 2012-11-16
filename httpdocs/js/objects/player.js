@@ -20,8 +20,8 @@ function Player(location){
 		y: 0
 	}
 	this.addMomentum = {
-		x: 7,
-		xAir: -5,
+		x: 5,
+		xAir: 1,
 		y: 15
 	}
 	this.maxMomentum = {
@@ -29,8 +29,8 @@ function Player(location){
 		y: 15
 	}
 	this.dragMomentum = {
-		x: -2,
-		xGround: -2, // When the user is touching the ground, add a bit more.
+		x: -1,
+		xGround: -1, // When the user is touching the ground, add a bit more.
 		y: 1 // Gravity.
 	}
 	
@@ -44,17 +44,19 @@ function Player(location){
  */
 Player.prototype.addLeft = function(){
 	if(this.momentum.x >= (this.maxMomentum.x * -1)){
-		this.momentum.x -= this.addMomentum.x;
-		if(!this.touching.ground){
-			this.momentum.x -= this.addMomentum.xAir;
+		this.momentum.x -= this.addMomentum.xAir;
+		if(this.touching.ground){
+			this.momentum.x -= this.addMomentum.x;
+			
 		}
 	}
 }
 Player.prototype.addRight = function(){
 	if(this.momentum.x <= (this.maxMomentum.x)){
-		this.momentum.x += this.addMomentum.x;
-		if(!this.touching.ground){
-			this.momentum.x += this.addMomentum.xAir;
+		this.momentum.x += this.addMomentum.xAir;
+		if(this.touching.ground){
+			this.momentum.x += this.addMomentum.x;
+			
 		}
 	}
 }
@@ -150,7 +152,7 @@ Player.prototype.groundCollision = function(){
 	}
 	
 	// Check if we going to collide in the next move
-	imgData = ctx['level'].getImageData((this.location.x), (this.location.y + this.size.h), this.size.w, this.momentum.y);
+	imgData = ctx['level'].getImageData((this.location.x), (this.location.y + this.size.h + 5), this.size.w, this.momentum.y);
 	
 	pixelCollision = this.pixelCollision(imgData.data);
 	if(pixelCollision === false){
@@ -213,12 +215,12 @@ Player.prototype.moveCanvas = function(){
 	// Move them on x axis.
 	// If they are in moveable zones.
 	if(this.location.x > 400 && this.location.x < (this.canvas.width - 400)){
-		for(i in {'level':true, 'bullets':true, 'player':true}){
+		for(i in {'level3d':true, 'level':true, 'bullets':true, 'player':true}){
 			canvas[i].style.marginLeft = '-'+(this.location.x - 400)+'px';
 		}
 	}
 	if(this.location.y > 200 && this.location.y < (this.canvas.height - 200)){
-		for(i in {'level':true, 'bullets':true, 'player':true}){
+		for(i in {'level3d':true, 'level':true, 'bullets':true, 'player':true}){
 			canvas[i].style.marginTop = '-'+(this.location.y - 200)+'px';
 		}
 	}
