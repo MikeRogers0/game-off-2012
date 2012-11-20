@@ -6,7 +6,7 @@ var objectsImgs = {};
 
 function preLoader(){
 	this.patterns = {'brick':true};
-	this.objectsImgs = {'normal':true, 'bullet':true};
+	this.objectsImgs = {'normal':true, 'bullet':true, 'crosshairs':true};
 	this.totalElements = 0;
 	this.totalElementsLoaded = 0;
 }

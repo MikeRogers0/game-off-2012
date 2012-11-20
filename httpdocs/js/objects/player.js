@@ -37,6 +37,9 @@ function Player(location){
 	this.touching = {
 		ground: false
 	};
+	
+	// The fork stuff
+	this.forks = [];
 }
 
 /**
@@ -65,6 +68,10 @@ Player.prototype.addJump = function(){
 		this.touching.ground = false;
 		this.momentum.y -= this.addMomentum.y;
 	}
+}
+
+Player.prototype.addFork = function(){
+	this.forks.push(new Fork());
 }
 
 /**
@@ -215,12 +222,12 @@ Player.prototype.moveCanvas = function(){
 	// Move them on x axis.
 	// If they are in moveable zones.
 	if(this.location.x > 400 && this.location.x < (this.canvas.width - 400)){
-		for(i in {'level3d':true, 'level':true, 'bullets':true, 'player':true}){
+		for(i in config.shifting_canvass){
 			canvas[i].style.marginLeft = '-'+(this.location.x - 400)+'px';
 		}
 	}
 	if(this.location.y > 200 && this.location.y < (this.canvas.height - 200)){
-		for(i in {'level3d':true, 'level':true, 'bullets':true, 'player':true}){
+		for(i in config.shifting_canvass){
 			canvas[i].style.marginTop = '-'+(this.location.y - 200)+'px';
 		}
 	}

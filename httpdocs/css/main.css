@@ -27,11 +27,20 @@
 }
 
 	#gf-level3d{
-		z-index: 10;
+		z-index: 5;
 	}
 	#gf-level{
+		z-index: 10;
+	}
+	
+	#gf-forks{
+		z-index: 15;
+	}
+	
+	#gf-crosshair{
 		z-index: 20;
 	}
+	
 	#gf-player{
 		z-index: 30;
 	}

@@ -1,4 +1,4 @@
-function Bullet(location, pattern){
+function Fork(location, pattern){
 	this.location = location ? location : {
 		x: 25,
 		y: 375
@@ -12,19 +12,19 @@ function Bullet(location, pattern){
 		y: 0
 	}
 	this.pattern = pattern ? pattern : 'fork';
-	this.ctx = ctx['bullet']; // Bricks are locked to the level layer.
+	this.ctx = ctx['forks']; // Bricks are locked to the level layer.
 }
 
-Bullet.prototype.update = function(){
+Fork.prototype.update = function(){
 	// Add the momentum in
 
  	// Check for collison to a player
  	
- 	this.ctx.drawImage(objectsImgs[this.state], this.location.x, this.location.y, this.size.w, this.size.h);
+ 	this.ctx.drawImage(objectsImgs[this.pattern], this.location.x, this.location.y, this.size.w, this.size.h);
  	
 };
 
-function Bullets(){
+/*function fork(){
 	this.bullets = [];
 	this.ctx = ctx['bullet'];
 }
@@ -39,4 +39,4 @@ Bullets.prototype.update = function(){
 	// loop through bullets 
 	
 	this.ctx.restore();
-}
+}*/
