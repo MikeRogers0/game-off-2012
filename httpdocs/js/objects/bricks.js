@@ -1,3 +1,4 @@
+preLoader.addPattern('brick'); // Preload the pattern.
 function Brick(location, size, pattern){
 	this.location = location ? location : {
 		x: 25,
@@ -8,6 +9,7 @@ function Brick(location, size, pattern){
 		h: 90
 	};
 	this.pattern = pattern ? pattern : 'brick';
+	
 	this.ctx = ctx['level']; // Bricks are locked to the level layer.
 	this.ctx3d = ctx['level3d'];
 }

@@ -10,7 +10,7 @@ function Crosshairs(pattern, size){
 	}
 	
 	this.pattern = pattern ? pattern : 'crosshairs';
-	
+	preLoader.addPattern(pattern); // Preload the pattern.
 	this.canvas = canvas['crosshairs'];
 	this.ctx = ctx['crosshairs'];
 }

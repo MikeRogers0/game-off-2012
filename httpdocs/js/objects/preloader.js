@@ -5,19 +5,19 @@ var patterns = {};
 var objectsImgs = {};
 
 function preLoader(){
-	this.patterns = {'brick':true};
-	this.objectsImgs = {'normal':true, 'bullet':true, 'crosshairs':true};
+	this.patterns = {};
+	this.objectsImgs = {};
 	this.totalElements = 0;
 	this.totalElementsLoaded = 0;
 }
 
-preLoader.prototype.addObject = function(name){
+preLoader.prototype.addPattern = function(name){
 	if(this.patterns[name] == undefined){
 		this.patterns[name] = true;
 	}
 }
 
-preLoader.prototype.addPlayer = function(name){
+preLoader.prototype.addObject = function(name){
 	if(this.objectsImgs[name] == undefined){
 		this.objectsImgs[name] = true;
 	}

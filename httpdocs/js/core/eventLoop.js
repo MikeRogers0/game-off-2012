@@ -15,7 +15,6 @@ function gameLoop(){
 	}
 	
 	player[0].refresh();
-	crosshairs.update();
 	
 	timeout = window.setTimeout(gameLoop, 50) // ~20 frames per second.
 }

@@ -1,6 +1,8 @@
 var events = document.createEvent('Event');
 events.initEvent('keyLeft', true, true);
 
+preLoader.addObject('normal'); // Preload the pattern.
+
 function Player(location){
 	this.location = location ? location : {
 		x: 25,
@@ -11,6 +13,7 @@ function Player(location){
 		h: 50
 	};
 	this.state = 'normal';
+	
 	this.ctx = ctx['player'];
 	this.canvas = canvas['player'];
 	
@@ -39,7 +42,7 @@ function Player(location){
 	};
 	
 	// The fork stuff
-	this.forks = [];
+	this.forks = new Forks();
 }
 
 /**
@@ -71,7 +74,7 @@ Player.prototype.addJump = function(){
 }
 
 Player.prototype.addFork = function(){
-	this.forks.push(new Fork());
+	this.forks.add(this.location, this.momentum);
 }
 
 /**
@@ -245,6 +248,9 @@ Player.prototype.draw = function(){
 };
 
 Player.prototype.refresh = function(){
+	// Move the forks around.
+	this.forks.refresh();
+
 	//debugger;
 	this.addDrag();
 	//console.log('With Drag', this.momentum);

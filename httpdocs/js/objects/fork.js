@@ -1,13 +1,15 @@
-function Fork(location, pattern){
+preLoader.addObject('fork'); // Preload the pattern.
+
+function Fork(location, momentum, pattern){
 	this.location = location ? location : {
 		x: 25,
 		y: 375
 	};
 	this.size = {
-		w: 5,
-		h: 5
+		w: 50,
+		h: 50
 	};
-	this.momentum = {
+	this.momentum = momentum ? momentum : {
 		x: 0,
 		y: 0
 	}
@@ -24,19 +26,23 @@ Fork.prototype.update = function(){
  	
 };
 
-/*function fork(){
-	this.bullets = [];
-	this.ctx = ctx['bullet'];
+function Forks(){
+	this.forks = [];
+	this.canvas = canvas['forks'];
+	this.ctx = ctx['forks'];
 }
-Bullets.prototype.add = function(location, momentum){
-	
+Forks.prototype.add = function(location, momentum){
+	this.forks.push(new Fork(location, momentum));
 }
 
-Bullets.prototype.update = function(){
+Forks.prototype.refresh = function(){
 	this.ctx.save();
 	this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	
 	// loop through bullets 
+	for(var i in this.forks){
+		this.forks[i].update();
+	}
 	
 	this.ctx.restore();
-}*/
+}

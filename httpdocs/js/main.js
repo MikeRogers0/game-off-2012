@@ -3,7 +3,7 @@
  */
 
 var config = {
-	'canvass': {'level3d':true, 'level':true, 'forks':true, 'crosshairs':true, 'player':true},
+	'canvass': {'level3d':true, 'level':true, 'forks':true, /*'crosshairs':true,*/ 'player':true},
 	'shifting_canvass': {'level3d':true, 'level':true, 'forks':true, 'player':true}, // The canvases which may change size.
 	'wrapper':document.getElementById('game-off'),
 	'canvas_size':{
@@ -18,11 +18,10 @@ var config = {
 head.js(
 	'js/core/canvas.js', // Finds and sets up the canvas elements.
 	'js/objects/preloader.js', // Loads the images used in the game
+	'js/objects/keyListners.js', 
 	'js/objects/bricks.js', 
 	'js/objects/player.js', 
 	'js/objects/fork.js', 
-	'js/objects/crosshairs.js',
-	'js/objects/keyListners.js', 
 	'js/objects/levels.js', 
 	'js/core/eventLoop.js', 
 	'js/core/startGame.js', // Contains the function which starts the game once everything is ready.
