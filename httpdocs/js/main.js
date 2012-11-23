@@ -6,6 +6,7 @@ var config = {
 	'canvass': {'level3d':true, 'level':true, 'forks':true, /*'crosshairs':true,*/ 'player':true},
 	'shifting_canvass': {'level3d':true, 'level':true, 'forks':true, 'player':true}, // The canvases which may change size.
 	'wrapper':document.getElementById('game-off'),
+	'fork_count': document.getElementById('forks-remaining'),
 	'canvas_size':{
 		w: 800,
 		h: 400

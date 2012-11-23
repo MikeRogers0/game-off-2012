@@ -74,7 +74,11 @@ Player.prototype.addJump = function(){
 }
 
 Player.prototype.addFork = function(){
+	if(this.forks.count() >= 100){
+		return;
+	}
 	this.forks.add(this.location, this.momentum);
+	config.fork_count.innerHTML = (100 - this.forks.count());
 }
 
 /**

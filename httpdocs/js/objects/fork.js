@@ -1,27 +1,45 @@
 preLoader.addObject('fork'); // Preload the pattern.
 
 function Fork(location, momentum, pattern){
-	this.location = location ? location : {
+	this.location = location ? {
+		x: location.x + 1,
+		y: location.y + 1
+	} : {
 		x: 25,
 		y: 375
 	};
+	
+	
+	
 	this.size = {
 		w: 50,
 		h: 50
 	};
-	this.momentum = momentum ? momentum : {
+	this.momentum = momentum ? {
+		x: momentum.x + 1,
+		y: momentum.y + 1
+	} : {
 		x: 0,
 		y: 0
 	}
 	this.pattern = pattern ? pattern : 'fork';
 	this.ctx = ctx['forks']; // Bricks are locked to the level layer.
+	
+	// Update the momentum to make it feel sexy.
+	this.momentum.y = 1; // We will reset for gravity later.
+	if(this.momentum.x < 0){ // It's moving left
+		this.momentum.x = -20;
+	} else {
+		this.momentum.x = 20;
+	}
 }
 
 Fork.prototype.update = function(){
 	// Add the momentum in
-
+	this.location.x += this.momentum.x;
+	 this.location.y += this.momentum.y;
+	
  	// Check for collison to a player
- 	
  	this.ctx.drawImage(objectsImgs[this.pattern], this.location.x, this.location.y, this.size.w, this.size.h);
  	
 };
@@ -33,6 +51,10 @@ function Forks(){
 }
 Forks.prototype.add = function(location, momentum){
 	this.forks.push(new Fork(location, momentum));
+}
+
+Forks.prototype.count = function(){
+	return this.forks.length;
 }
 
 Forks.prototype.refresh = function(){

@@ -11,6 +11,8 @@ function gameLoop(){
 		player[0].addJump();
 	}
 	if(keys[69] || keys[16]){ // E || Shift
+		keys[69] = false; // stop them holding it
+		keys[16] = false;
 		player[0].addFork();
 	}
 	
