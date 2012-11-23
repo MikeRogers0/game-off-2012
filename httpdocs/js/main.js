@@ -18,6 +18,7 @@ var config = {
  */
 head.js(
 	'js/core/canvas.js', // Finds and sets up the canvas elements.
+	'js/core/pixelCollision.js', // The pixel collision function
 	'js/objects/preloader.js', // Loads the images used in the game
 	'js/objects/keyListners.js', 
 	'js/objects/bricks.js', 

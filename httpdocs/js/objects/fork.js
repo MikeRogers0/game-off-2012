@@ -34,10 +34,43 @@ function Fork(location, momentum, pattern){
 	}
 }
 
+Fork.prototype.collisionLeft = function(){
+	if(this.momentum.x >= 0){
+		return;
+	}
+	imgData = ctx['level'].getImageData((this.location.x + this.momentum.x), (this.location.y + (this.size.h - 1)), (this.momentum.x * -1), 1);
+	
+	if(pixelCollision(imgData.data) === false){
+		return;
+	}
+	
+	this.momentum.x = 0;
+	this.momentum.y = 0;
+	//this.momentum.x = (pixelCollision * -1);
+}
+
+Fork.prototype.collisionRight = function(){
+	if(this.momentum.x <= 0){
+		return;
+	}
+	imgData = ctx['level'].getImageData((this.location.x + this.size.w), (this.location.y + (this.size.h -1)), (this.momentum.x), 1);
+	
+	if(pixelCollision(imgData.data) === false){
+		return;
+	}
+	this.momentum.x = 0;
+	this.momentum.y = 0;
+	//this.momentum.x = (pixelCollision);
+}
+
 Fork.prototype.update = function(){
+	// Check for colission.
+	this.collisionLeft();
+	this.collisionRight();
+
 	// Add the momentum in
 	this.location.x += this.momentum.x;
-	 this.location.y += this.momentum.y;
+	this.location.y += this.momentum.y;
 	
  	// Check for collison to a player
  	this.ctx.drawImage(objectsImgs[this.pattern], this.location.x, this.location.y, this.size.w, this.size.h);

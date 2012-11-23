@@ -124,19 +124,6 @@ Player.prototype.checkCollision = function(){
 	this.boundaryCollision();
 }
 
-/**
- * Does the pixel check for me.
- */
-Player.prototype.pixelCollision = function pixelCollision(pix){
-	for (var i = 0; n = pix.length, i < n; i += 4) {
-		if (pix[i] != 0) {
-			return (i / 4); // Returns the amount of pixels we are away.
-			//return true; 
-		}
-	}
-	return false;
-}
-
 Player.prototype.boundaryCollision = function(){
 	xLocation = (this.location.x + this.momentum.x);
 	yLocation = (this.location.y + this.momentum.y);
@@ -168,8 +155,7 @@ Player.prototype.groundCollision = function(){
 	// Check if we going to collide in the next move
 	imgData = ctx['level'].getImageData((this.location.x), (this.location.y + this.size.h + 5), this.size.w, this.momentum.y);
 	
-	pixelCollision = this.pixelCollision(imgData.data);
-	if(pixelCollision === false){
+	if(pixelCollision(imgData.data) === false){
 		return;
 	}
 	
@@ -187,8 +173,7 @@ Player.prototype.collisionAbove = function(){
 	// Check if we going to collide in the next move
 	imgData = ctx['level'].getImageData((this.location.x + (this.size.w / 2)), (this.location.y), this.size.w, (this.momentum.y));
 	
-	pixelCollision = this.pixelCollision(imgData.data);
-	if(pixelCollision === false){
+	if(pixelCollision(imgData.data) === false){
 		return;
 	}
 	
@@ -201,8 +186,8 @@ Player.prototype.collisionLeft = function(){
 		return;
 	}
 	imgData = ctx['level'].getImageData((this.location.x + this.momentum.x), (this.location.y + (this.size.h - 1)), (this.momentum.x * -1), 1);
-	pixelCollision = this.pixelCollision(imgData.data);
-	if(pixelCollision === false){
+	
+	if(pixelCollision(imgData.data) === false){
 		return;
 	}
 	
@@ -216,8 +201,8 @@ Player.prototype.collisionRight = function(){
 		return;
 	}
 	imgData = ctx['level'].getImageData((this.location.x + this.size.w), (this.location.y + (this.size.h -1)), (this.momentum.x), 1);
-	pixelCollision = this.pixelCollision(imgData.data);
-	if(pixelCollision === false){
+	
+	if(pixelCollision(imgData.data) === false){
 		return;
 	}
 	this.touching.right = true;
