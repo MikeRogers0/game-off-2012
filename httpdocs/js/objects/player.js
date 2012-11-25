@@ -6,8 +6,8 @@ function Player(location){
 		y: 220
 	};
 	this.size = {
-		w: 40,
-		h: 31
+		w: 37,
+		h: 46
 	};
 	this.state = 'normal';
 	
@@ -157,14 +157,21 @@ Player.prototype.groundCollision = function(){
 	}
 	
 	// Check if we going to collide in the next move
-	imgData = ctx['level'].getImageData((this.location.x), (this.location.y + this.size.h + 5), this.size.w, this.momentum.y);
+	imgData = ctx['level'].getImageData((this.location.x), (this.location.y + this.size.h + 3), this.size.w, this.momentum.y);
 	
-	if(pixelCollision(imgData.data) === false){
+	pixelCollisionN = pixelCollision(imgData.data);
+	
+	if(pixelCollisionN === false){
 		return;
 	}
 	
-	this.touching.ground = true;
+	pixelCollisionN = parseInt(pixelCollisionN / this.size.w);
+	
 	this.momentum.y = 0;
+	if(pixelCollisionN >= 2){
+		this.momentum.y = pixelCollisionN;
+	}
+	this.touching.ground = true;
 	//this.momentum.y = (pixelCollision * -1);
 }
 
@@ -175,13 +182,21 @@ Player.prototype.collisionAbove = function(){
 	}
 	
 	// Check if we going to collide in the next move
-	imgData = ctx['level'].getImageData((this.location.x + (this.size.w / 2)), (this.location.y), this.size.w, (this.momentum.y));
+	imgData = ctx['level'].getImageData((this.location.x + (this.size.w / 2)), (this.location.y - 1), this.size.w, (this.momentum.y));
 	
-	if(pixelCollision(imgData.data) === false){
+	pixelCollisionN = pixelCollision(imgData.data, true);
+	
+	if(pixelCollisionN === false){
 		return;
 	}
 	
+	pixelCollisionN = parseInt(pixelCollisionN / this.size.w); // Gives us the pixles above of free space.
+	
 	this.momentum.y = 0;
+	if(pixelCollisionN >= 2){
+		this.momentum.y = pixelCollisionN * -1;
+		return;
+	}
 	//this.momentum.y = (pixelCollision);
 }
 
