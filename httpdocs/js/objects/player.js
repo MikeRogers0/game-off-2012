@@ -74,7 +74,10 @@ Player.prototype.addFork = function(){
 	if(this.forks.count() >= 100){
 		return;
 	}
-	this.forks.add(this.location, this.momentum);
+	this.forks.add({
+		x: this.location.x+ (this.size.w * 0.25),
+		y: (this.location.y + (this.size.h * 0.25))
+	}, this.momentum);
 	config.forksRemaining.innerHTML = (100 - this.forks.count());
 }
 

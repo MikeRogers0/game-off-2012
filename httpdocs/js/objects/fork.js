@@ -26,7 +26,7 @@ function Fork(location, momentum, pattern){
 	this.ctx = ctx['forks']; // Bricks are locked to the level layer.
 	
 	// Update the momentum to make it feel sexy.
-	this.momentum.y = 1; // We will reset for gravity later.
+	this.momentum.y = 3; // We will reset for gravity later.
 	if(this.momentum.x < 0){ // It's moving left
 		this.momentum.x = -20;
 	} else {
@@ -46,7 +46,10 @@ Fork.prototype.collisionLeft = function(){
 		return;
 	}
 	
-	this.momentum.x = -pixelCollisionN;
+	this.momentum.x = 0
+	if(pixelCollisionN >= 7){
+		this.momentum.x = -pixelCollisionN;
+	}
 	this.momentum.y = 0;
 	//this.momentum.x = (pixelCollision * -1);
 }
@@ -63,8 +66,33 @@ Fork.prototype.collisionRight = function(){
 		return;
 	}
 	
-	this.momentum.x = pixelCollisionN;
+	this.momentum.x = 0;
+	if(pixelCollisionN >= 7){
+		this.momentum.x = pixelCollisionN;
+	}
 	this.momentum.y = 0;
+	//this.momentum.x = (pixelCollision);
+}
+
+Fork.prototype.collisionGround = function(){
+	if(this.momentum.y >= 1){
+		imgData = ctx['level'].getImageData((this.location.x), (this.location.y + this.size.h), this.size.w, this.momentum.y);
+	
+		pixelCollisionN = pixelCollision(imgData.data);
+		
+		if(pixelCollisionN === false){
+			return;
+		}
+	}
+	
+	
+	this.momentum.y = 0;
+	
+	if(this.momentum.x <= 2 && this.momentum.x >= -2){
+		this.momentum.x = 0;
+	} else {
+		this.momentum.x = this.momentum.x / 1.5;
+	}
 	//this.momentum.x = (pixelCollision);
 }
 
@@ -72,6 +100,7 @@ Fork.prototype.update = function(){
 	// Check for colission.
 	this.collisionLeft();
 	this.collisionRight();
+	this.collisionGround();
 
 	// Add the momentum in
 	this.location.x += this.momentum.x;
