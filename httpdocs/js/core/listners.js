@@ -13,7 +13,7 @@ document.addEventListener('keydown', function(e){
 for(i=0; i<config.playLevel.length; i++){
 	config.playLevel[i].addEventListener('click', function(e){
 		gameLoop.stop(); // stop current game.
-		
-		level[e.srcElement.getAttribute('data-level')].start();
+		//console.log(e);
+		level[e.target.getAttribute('data-level')].start();
 	});
 }
