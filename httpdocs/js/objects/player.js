@@ -7,7 +7,7 @@ function Player(location){
 	};
 	this.size = {
 		w: 40,
-		h: 50
+		h: 31
 	};
 	this.state = 'normal';
 	
@@ -21,7 +21,7 @@ function Player(location){
 	}
 	this.addMomentum = {
 		x: 5,
-		xAir: 1,
+		xAir: 1.5,
 		y: 15
 	}
 	this.maxMomentum = {
@@ -47,7 +47,9 @@ function Player(location){
  */
 Player.prototype.addLeft = function(){
 	if(this.momentum.x >= (this.maxMomentum.x * -1)){
-		this.momentum.x -= this.addMomentum.xAir;
+		if(this.momentum.y <= (this.maxMomentum.y / 2)){
+			this.momentum.x -= this.addMomentum.xAir;
+		}
 		if(this.touching.ground){
 			this.momentum.x -= this.addMomentum.x;
 			
@@ -56,7 +58,9 @@ Player.prototype.addLeft = function(){
 }
 Player.prototype.addRight = function(){
 	if(this.momentum.x <= (this.maxMomentum.x)){
-		this.momentum.x += this.addMomentum.xAir;
+		if(this.momentum.y <= (this.maxMomentum.y / 2)){
+			this.momentum.x += this.addMomentum.xAir;
+		}
 		if(this.touching.ground){
 			this.momentum.x += this.addMomentum.x;
 			
