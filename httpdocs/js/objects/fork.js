@@ -40,11 +40,13 @@ Fork.prototype.collisionLeft = function(){
 	}
 	imgData = ctx['level'].getImageData((this.location.x + this.momentum.x), (this.location.y + (this.size.h - 1)), (this.momentum.x * -1), 1);
 	
-	if(pixelCollision(imgData.data) === false){
+	pixelCollisionN = pixelCollision(imgData.data);
+	
+	if(pixelCollisionN === false){
 		return;
 	}
 	
-	this.momentum.x = 0;
+	this.momentum.x = -pixelCollisionN;
 	this.momentum.y = 0;
 	//this.momentum.x = (pixelCollision * -1);
 }
@@ -55,10 +57,13 @@ Fork.prototype.collisionRight = function(){
 	}
 	imgData = ctx['level'].getImageData((this.location.x + this.size.w), (this.location.y + (this.size.h -1)), (this.momentum.x), 1);
 	
-	if(pixelCollision(imgData.data) === false){
+	pixelCollisionN = pixelCollision(imgData.data);
+	
+	if(pixelCollisionN === false){
 		return;
 	}
-	this.momentum.x = 0;
+	
+	this.momentum.x = pixelCollisionN;
 	this.momentum.y = 0;
 	//this.momentum.x = (pixelCollision);
 }

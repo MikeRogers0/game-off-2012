@@ -5,7 +5,7 @@ function Level(id){
 
 Level.prototype.build = function(){
 	// Make the canvas the correct size.
-	for(i in config.shifting_canvass){
+	for(i in config.canvass){
 		canvas[i].style.width = '1600px';
 		canvas[i].style.height = '400px';
 		canvas[i].width = 1600;
