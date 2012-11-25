@@ -12,8 +12,8 @@ function Fork(location, momentum, pattern){
 	
 	
 	this.size = {
-		w: 50,
-		h: 50
+		w: 40,
+		h: 5
 	};
 	this.momentum = momentum ? {
 		x: momentum.x + 1,
