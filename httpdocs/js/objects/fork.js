@@ -47,7 +47,7 @@ Fork.prototype.collisionLeft = function(){
 	}
 	
 	this.momentum.x = 0
-	if(pixelCollisionN >= 7){
+	if(pixelCollisionN >= 2){
 		this.momentum.x = -pixelCollisionN;
 	}
 	this.momentum.y = 0;
@@ -67,7 +67,7 @@ Fork.prototype.collisionRight = function(){
 	}
 	
 	this.momentum.x = 0;
-	if(pixelCollisionN >= 7){
+	if(pixelCollisionN >= 2){
 		this.momentum.x = pixelCollisionN;
 	}
 	this.momentum.y = 0;
