@@ -107,9 +107,16 @@ Fork.prototype.update = function(){
 	this.location.y += this.momentum.y;
 	
  	// Check for collison to a player
- 	this.ctx.drawImage(objectsImgs[this.pattern], this.location.x, this.location.y, this.size.w, this.size.h);
+ 	this.draw();
  	
 };
+Fork.prototype.draw = function(ctx){
+	if(ctx){
+		this.ctx = ctx;
+	}
+	this.ctx.drawImage(objectsImgs[this.pattern], this.location.x, this.location.y, this.size.w, this.size.h);
+}
+
 
 function Forks(){
 	this.forks = [];
@@ -131,6 +138,14 @@ Forks.prototype.refresh = function(){
 	// loop through bullets 
 	for(var i in this.forks){
 		this.forks[i].update();
+		
+		if(this.forks[i].momentum.x == 0 && this.forks[i].momentum.y == 0 ){ // It's not moving.
+			// Draw it on the collision & level canvas.
+			this.forks[i].draw(ctx['level']);
+			this.forks[i].draw(ctx['collisionBlocks']);
+			
+			delete this.forks[i];
+		}
 	}
 	
 	this.ctx.restore();
