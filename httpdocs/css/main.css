@@ -19,46 +19,67 @@
 		width: 800px;
 		height: 400px;
 		overflow: hidden;
-		transition: margin 0.2s swing;
+		transition: all 1s ease-in-out 0.2s;
+		-moz-transition: all 1s ease-in-out 0.2s;
+		-webkit-transition: all 1s ease-in-out 0.2s;
+		-o-transition: all 1s ease-in-out 0.2s;
 	}
 	
-		#loading-screen > *{
+		#loadingScreen > *{
 			width: 600px;
 			margin: 50px auto;
 			text-align: center;
 		}
+		#mainScreen > h1{
+			margin: 50px auto;
+			text-align: center;
+		}
+		
+		#mainScreen > *{
+			width: 600px;
+			margin: 20px auto;
+			display: block;
+		}
 		
 		
-
-	/*#gf-level3d{
-		z-index: 5;
-	}
-	#gf-level{
-		z-index: 10;
-	}
-	
-	#gf-forks{
-		z-index: 15;
-	}
-	
-	#gf-crosshair{
-		z-index: 20;
-	}
-	
-	#gf-player{
-		z-index: 30;
-	}
-	
-	ul#gf-hud{
-		z-index: 40;
-		background: rgba(0,0,0, 0.4);
-		height: auto;
-		color: #fff;
-		margin: 0;
-		padding: 5px 10px;
-		list-style: none;
-	}
-		ul#gf-hud li{
-			float: left;
-			margin-right: 50px;
-		}*/
+		#level{
+			position: relative;
+		}
+			#level > *{
+				position: absolute;
+				width: 800px;
+				height: 400px;
+			}
+			
+			#gf-level3d{
+				z-index: 5;
+			}
+			#gf-level{
+				z-index: 10;
+			}
+			
+			#gf-forks{
+				z-index: 15;
+			}
+			
+			#gf-crosshair{
+				z-index: 20;
+			}
+			
+			#gf-player{
+				z-index: 30;
+			}
+			
+			ul#gf-hud{
+				z-index: 40;
+				background: rgba(0,0,0, 0.4);
+				height: auto;
+				color: #fff;
+				margin: 0;
+				padding: 5px 10px;
+				list-style: none;
+			}
+				ul#gf-hud li{
+					float: left;
+					margin-right: 50px;
+				}

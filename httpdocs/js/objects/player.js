@@ -1,6 +1,3 @@
-var events = document.createEvent('Event');
-events.initEvent('keyLeft', true, true);
-
 preLoader.addObject('normal'); // Preload the pattern.
 
 function Player(location){
@@ -78,7 +75,7 @@ Player.prototype.addFork = function(){
 		return;
 	}
 	this.forks.add(this.location, this.momentum);
-	config.fork_count.innerHTML = (100 - this.forks.count());
+	config.forksRemaining.innerHTML = (100 - this.forks.count());
 }
 
 /**

@@ -1,6 +1,4 @@
 // First create the loading events, so when we preloaded everyting we can start up nicely.
-evt = document.createEvent('Event');
-evt.initEvent('preLoaderCompleted',true,true);
 var patterns = {};
 var objectsImgs = {};
 
@@ -9,6 +7,7 @@ function preLoader(){
 	this.objectsImgs = {};
 	this.totalElements = 0;
 	this.totalElementsLoaded = 0;
+	this.callback = function(){};
 }
 
 preLoader.prototype.addPattern = function(name){
@@ -23,7 +22,8 @@ preLoader.prototype.addObject = function(name){
 	}
 }
 
-preLoader.prototype.load = function(){	
+preLoader.prototype.load = function(callback){	
+	this.callback = callback;
 	// Load the patterns
 	for(var i in this.patterns){
 		this.totalElements++;
@@ -47,7 +47,7 @@ preLoader.prototype.load = function(){
 preLoader.prototype.loaded = function (){
 	this.totalElementsLoaded++;
 	if(this.totalElementsLoaded >= this.totalElements){
-		document.addEventListener('preLoaderCompleted',startGame(),false);
+		this.callback(); // Run the callback.
 	}
 }
 

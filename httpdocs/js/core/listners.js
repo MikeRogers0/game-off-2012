@@ -9,3 +9,11 @@ document.addEventListener('keydown', function(e){
 	keys[e.keyCode] = true;
 	return false;
 }, false);
+
+for(i=0; i<config.playLevel.length; i++){
+	config.playLevel[i].addEventListener('click', function(e){
+		gameLoop.stop(); // stop current game.
+		
+		level[e.srcElement.getAttribute('data-level')].start();
+	});
+}
