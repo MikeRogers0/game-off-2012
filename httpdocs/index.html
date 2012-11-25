@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <title>Game Off</title>
+        <title>Fork Adventure - Game Off</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -32,7 +32,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="#">Game Off</a>
+                    <a class="brand" href="/">Fork Adventure</a>
                   
                     </div>
                 </div>
@@ -44,22 +44,37 @@
             <!-- Main hero unit for a primary marketing message or call to action -->
 			<div class="hero-unit">
 				<div id="game-off">
-					<canvas id="gf-level3d" width="800" height="400" style="width: 800px; height: 400px;"></canvas>
-					<canvas id="gf-level" width="800" height="400" style="width: 800px; height: 400px;"></canvas>
-					<canvas id="gf-forks" width="800" height="400" style="width: 800px; height: 400px;"></canvas>
-					<!--<canvas id="gf-crosshairs" width="800" height="400" style="width: 800px; height: 400px;"></canvas>-->
-					<canvas id="gf-player" width="800" height="400" style="width: 800px; height: 400px;"></canvas>
-					<ul id="gf-hud">
-						<li>Level: <em>1</em></li>
-						<li>Forks Remaining (e): <em id="forks-remaining">100</em></li>
-					</ul>
+					<div id="loading-screen">
+						<h1>Fork Adventure</h1>
+						<div class="progress">
+							<div class="bar" style="width: 0%;"></div>
+						</div>
+						<p>
+							<small id="loading-status">About to start loading...</small>
+						</p>
+					</div>
+					<div id="main-screen">
+						<h1>Fork Adventure</h1>
+						
+						<button class="btn btn-large btn-block btn-primary" type="button">Block level button</button>
+					</div>
+					<div id="level">
+						<canvas id="gf-level3d" width="800" height="400" style="width: 800px; height: 400px;"></canvas>
+						<canvas id="gf-level" width="800" height="400" style="width: 800px; height: 400px;"></canvas>
+						<canvas id="gf-forks" width="800" height="400" style="width: 800px; height: 400px;"></canvas>
+						<canvas id="gf-player" width="800" height="400" style="width: 800px; height: 400px;"></canvas>
+						<ul id="gf-hud">
+							<li>Level: <em>1</em></li>
+							<li>Forks Remaining (e): <em id="forks-remaining">100</em></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 
             <hr>
 
             <footer>
-                <p>Some copyright or somehting here.</p>
+                <p>This is an Open Source game <a href="http://www.twitter.com/MikeRogers0">@MikeRogers0</a> made for <a href="https://github.com/blog/1303-github-game-off">GitHub Game-off</a>. You can find it's source code on <a href="https://github.com/MikeRogers0/game-off-2012">GitHub</a>.</p>
             </footer>
 
         </div> <!-- /container -->
@@ -69,6 +84,6 @@
 
         <script src="js/vendor/bootstrap.min.js"></script>
 
-        <script src="js/main.js"></script>
+        <!--<script src="js/main.js"></script>-->
     </body>
 </html>

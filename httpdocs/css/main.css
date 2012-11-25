@@ -12,21 +12,25 @@
 	border: 1px solid #000;
 	width: 800px;
 	height: 400px;
-	position: relative;
 	overflow: hidden;
+	background: url(../img/polaroid.png);
 }
-#game-off > *{
-	width: 800px;
-	height: 400px;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background: none;
-	overflow: hidden;
-	transition: margin 0.2s swing;
-}
+	#game-off > *{
+		width: 800px;
+		height: 400px;
+		overflow: hidden;
+		transition: margin 0.2s swing;
+	}
+	
+		#loading-screen > *{
+			width: 600px;
+			margin: 50px auto;
+			text-align: center;
+		}
+		
+		
 
-	#gf-level3d{
+	/*#gf-level3d{
 		z-index: 5;
 	}
 	#gf-level{
@@ -57,4 +61,4 @@
 		ul#gf-hud li{
 			float: left;
 			margin-right: 50px;
-		}
+		}*/
