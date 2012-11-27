@@ -10,6 +10,7 @@ var config = {
 		'loadingScreen_loadingStatus': document.getElementById('loadingStatus'),
 	'mainScreen': document.getElementById('mainScreen'),
 	'playLevel': document.querySelectorAll('.playLevel'), // The play level buttons
+	'level': document.getElementById('level'),
 	
 	// Now the canvases were using.
 	'canvass': {'level3d':true, 'level':true, 'forks':true, 'player':true},
@@ -38,13 +39,13 @@ head.js(
 		config.loadingScreen_loadingStatus.innerHTML = 'Loading canvas objects';
 		config.loadingScreen_loadingBar.style.width = '25%';
 		head.js(
-		'js/objects/bricks.js', 
-		'js/objects/player.js',
+		'js/objects/bricks.js',
+		'js/objects/fork.js',  
 		function(){
 			config.loadingScreen_loadingBar.style.width = '40%';
 			head.js(
-				'js/objects/fork.js', 
 				'js/objects/levels.js',
+				'js/objects/player.js',
 				function(){
 					config.loadingScreen_loadingStatus.innerHTML = 'Loading images';
 					config.loadingScreen_loadingBar.style.width = '60%';

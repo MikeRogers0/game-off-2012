@@ -81,6 +81,9 @@ Fork.prototype.collisionGround = function(){
 		pixelCollisionN = pixelCollision(imgData.data);
 		
 		if(pixelCollisionN === false){
+			if(this.momentum.y == 0){
+				this.momentum.y = 2;
+			}
 			return;
 		}
 	}

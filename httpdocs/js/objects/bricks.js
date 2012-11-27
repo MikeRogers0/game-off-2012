@@ -17,11 +17,6 @@ function Brick(location, size, pattern){
 }
 
 Brick.prototype.draw = function(){
- 	this.ctx.fillStyle = this.ctx.createPattern(patterns[this.pattern], 'repeat');
- 	this.ctx.strokeStyle = '#000';
- 	this.ctx.fillRect(this.location.x, this.location.y, this.size.w, this.size.h);
- 	//this.ctx.strokeRect(this.location.x, this.location.y, this.size.w, this.size.h);
- 	
  	// Add the 3d bit in.
  	this.ctx3d.fillStyle = this.ctx.createPattern(patterns['grass'], 'repeat');
  	this.ctx3d.strokeStyle = '#1B5C07';
@@ -41,4 +36,33 @@ Brick.prototype.draw = function(){
 	this.ctx3d.fill();
  	//this.ctx3d.fillRect(this.location.x + 10, this.location.y - 20, this.size.w, this.size.h);
  	//this.ctx3d.strokeRect(this.location.x + 10, this.location.y - 20, this.size.w, this.size.h);
+ 	
+ 	this.ctx.fillStyle = this.ctx.createPattern(patterns[this.pattern], 'repeat');
+ 	this.ctx.strokeStyle = '#000';
+ 	this.ctx.fillRect(this.location.x, this.location.y, this.size.w, this.size.h);
+ 	//this.ctx.strokeRect(this.location.x, this.location.y, this.size.w, this.size.h);
 };
+
+/**
+ * Scary Stuff class
+ */
+Water = function(location, size, pattern){
+	this.location = location ? location : {
+		x: 25,
+		y: 375
+	};
+	this.size = size ? size : {
+		w: 80,
+		h: 90
+	};
+	this.pattern = pattern ? pattern : 'water';
+	
+	this.ctx = ctx['level3d'];
+}
+
+Water.prototype.draw = function(){
+	this.ctx.fillStyle = '#1BA8E0';
+ 	this.ctx.strokeStyle = '#000';
+ 	this.ctx.fillRect(this.location.x, this.location.y, this.size.w, this.size.h);
+
+}

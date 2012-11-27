@@ -1,7 +1,10 @@
 preLoader.addObject('normal'); // Preload the pattern.
 
 function Player(location){
-	this.location = location ? location : {
+	this.location = location ? {
+		x: location.x *1,
+		y: location.y * 1
+	} : {
 		x: 25,
 		y: 220
 	};
@@ -267,3 +270,5 @@ Player.prototype.refresh = function(){
 	this.draw();
 	this.moveCanvas();
 }
+
+var player = new Player();
