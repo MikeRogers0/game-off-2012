@@ -1,4 +1,5 @@
-preLoader.addObject('fork'); // Preload the pattern.
+preLoader.addObject('fork-right'); // Preload the pattern.
+preLoader.addObject('fork-left');
 
 function Fork(location, momentum, pattern){
 	this.location = location ? {
@@ -22,7 +23,12 @@ function Fork(location, momentum, pattern){
 		x: 0,
 		y: 0
 	}
-	this.pattern = pattern ? pattern : 'fork';
+	
+	if(this.momentum.x < 0){
+		this.pattern = pattern ? pattern : 'fork-left';
+	} else{
+		this.pattern = pattern ? pattern : 'fork-right';
+	}
 	this.ctx = ctx['forks']; // Bricks are locked to the level layer.
 	
 	// Update the momentum to make it feel sexy.

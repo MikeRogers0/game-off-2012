@@ -21,7 +21,10 @@ level[1].bricks.push(new Brick({x:2400, y:420}, {w: 200, h:60}));
 
 level[1].bricks.push(new Brick({x:2600, y:360}, {w: 200, h:120}));
 
-level[1].bricks.push(new Brick({x:2350, y:260}, {w: 200, h:60}));
+level[1].bricks.push(new Brick({x:2560, y:220}, {w: 20, h:60}));
+level[1].bricks.push(new Brick({x:2460, y:200}, {w: 120, h:60}));
+
+level[1].bricks.push(new Brick({x:2000, y:200}, {w: 220, h:60}));
 
 
 // Water in to fill in gaps
