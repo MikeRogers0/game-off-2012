@@ -12,8 +12,8 @@ var config = {
 	'playLevel': document.querySelectorAll('.playLevel'), // The play level buttons
 	
 	// Now the canvases were using.
-	'canvass': {'collisionBlocks':true, 'level':true, 'forks':true, 'player':true},
-	'shifting_canvass': {'level':true, 'forks':true, 'player':true}, // The canvases which move with the player.
+	'canvass': {'level3d':true, 'level':true, 'forks':true, 'player':true},
+	'shifting_canvass': {'level3d':true, 'level':true, 'forks':true, 'player':true}, // The canvases which move with the player.
 	
 	// The HUD elements
 	'forksRemaining': document.getElementById('forksRemaining'),

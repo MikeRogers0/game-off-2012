@@ -1,4 +1,6 @@
-preLoader.addPattern('brick'); // Preload the pattern.
+preLoader.addPattern('brick'); // Preload the patterns.
+preLoader.addPattern('grass');
+
 function Brick(location, size, pattern){
 	this.location = location ? location : {
 		x: 25,
@@ -11,7 +13,7 @@ function Brick(location, size, pattern){
 	this.pattern = pattern ? pattern : 'brick';
 	
 	this.ctx = ctx['level']; // Bricks are locked to the level layer.
-	//this.ctx3d = ctx['level3d'];
+	this.ctx3d = ctx['level3d'];
 }
 
 Brick.prototype.draw = function(){
@@ -21,8 +23,8 @@ Brick.prototype.draw = function(){
  	//this.ctx.strokeRect(this.location.x, this.location.y, this.size.w, this.size.h);
  	
  	// Add the 3d bit in.
- 	/*this.ctx3d.fillStyle = '#d6d6d6';
- 	this.ctx3d.strokeStyle = '#000';
+ 	this.ctx3d.fillStyle = this.ctx.createPattern(patterns['grass'], 'repeat');
+ 	this.ctx3d.strokeStyle = '#1B5C07';
  	this.ctx3d.beginPath();
  	
 	this.ctx3d.moveTo(this.location.x ,this.location.y);
@@ -36,7 +38,7 @@ Brick.prototype.draw = function(){
 	this.ctx3d.lineTo(this.location.x + this.size.w,this.location.y + 1);
 	
 	this.ctx3d.stroke();
-	this.ctx3d.fill();*/
+	this.ctx3d.fill();
  	//this.ctx3d.fillRect(this.location.x + 10, this.location.y - 20, this.size.w, this.size.h);
  	//this.ctx3d.strokeRect(this.location.x + 10, this.location.y - 20, this.size.w, this.size.h);
 };

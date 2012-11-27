@@ -142,7 +142,6 @@ Forks.prototype.refresh = function(){
 		if(this.forks[i].momentum.x == 0 && this.forks[i].momentum.y == 0 ){ // It's not moving.
 			// Draw it on the collision & level canvas.
 			this.forks[i].draw(ctx['level']);
-			this.forks[i].draw(ctx['collisionBlocks']);
 			
 			delete this.forks[i];
 		}
