@@ -61,7 +61,7 @@ Water = function(location, size, pattern){
 }
 
 Water.prototype.draw = function(){
-	this.ctx.fillStyle = '#1BA8E0';
+	this.ctx.fillStyle = '#8BEB4B';
  	this.ctx.strokeStyle = '#000';
  	this.ctx.fillRect(this.location.x, this.location.y, this.size.w, this.size.h);
 
