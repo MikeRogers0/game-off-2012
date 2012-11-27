@@ -2,7 +2,7 @@ function Level(id, size, playerStart){
 	this.id = id;
 	this.bricks = [];
 	this.water = [];
-	this.scaryStuff = [];
+	this.stuff = [];
 	this.text = [];
 	
 	this.size = size ? size : {w: 1600, h: 400};
@@ -31,8 +31,8 @@ Level.prototype.build = function(){
 	}
 	
 	// Add in the scaryStuff.
-	for(i in this.scaryStuff){
-		this.scaryStuff[i].draw();
+	for(i in this.stuff){
+		this.stuff[i].draw();
 	}
 	
 	// Add in the scaryStuff.

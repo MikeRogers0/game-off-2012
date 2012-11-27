@@ -1,4 +1,5 @@
-preLoader.addObject('normal'); // Preload the pattern.
+preLoader.addObject('normal-left'); // Preload the pattern.
+preLoader.addObject('normal-right');
 
 function Player(location){
 	this.location = location ? {
@@ -9,10 +10,10 @@ function Player(location){
 		y: 220
 	};
 	this.size = {
-		w: 37,
+		w: 24,
 		h: 46
 	};
-	this.state = 'normal';
+	this.state = 'normal-left';
 	
 	this.ctx = ctx['player'];
 	this.canvas = canvas['player'];
@@ -43,6 +44,7 @@ function Player(location){
 	
 	// The fork stuff
 	this.forks = new Forks();
+	this.updateForkCount();
 }
 
 /**
@@ -81,10 +83,23 @@ Player.prototype.addFork = function(){
 	if(this.forks.count() >= 100){
 		return;
 	}
+	
+	sendingMomentum = {x:this.momentum.x, y:this.momentum.y};
+	
+	if(this.state == 'normal-left'){
+		sendingMomentum.x = 2;
+	} else {
+		sendingMomentum.x = -2;
+	}
+	
 	this.forks.add({
 		x: this.location.x+ (this.size.w * 0.25),
 		y: (this.location.y + (this.size.h * 0.25))
-	}, this.momentum);
+	}, sendingMomentum);
+	this.updateForkCount();
+}
+
+Player.prototype.updateForkCount = function(){
 	config.forksRemaining.innerHTML = (100 - this.forks.count());
 }
 
@@ -247,6 +262,14 @@ Player.prototype.moveCanvas = function(){
 	}
 } 
 
+Player.prototype.updateState = function(){
+	if(this.momentum.x > 0){
+		this.state = 'normal-left';
+	}else if(this.momentum.x < 0){
+		this.state = 'normal-right';
+	}
+}
+
 Player.prototype.draw = function(){
 	// Update player location
 	this.location.x += this.momentum.x;
@@ -267,8 +290,10 @@ Player.prototype.refresh = function(){
 	//console.log('With Drag', this.momentum);
 	this.checkCollision();
 	//console.log('After Collisions', this.momentum);
+	
+	this.updateState();
 	this.draw();
 	this.moveCanvas();
 }
 
-var player = new Player();
+var player = null;
