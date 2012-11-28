@@ -19,3 +19,4 @@ Fork Adventure is a game where you use forks to build bridges & ledges to get th
  * Leaderboard - Who uses the least forks wins.
  * Multiplayer
  * Enemies
+ * Bonus Forks or SSH Keys to pick up.
