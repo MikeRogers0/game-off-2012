@@ -1,4 +1,4 @@
-level[1] = new Level(1, {w:5600, h:800}, {x: 25, y: 520});
+level[1] = new Level(1, {w:3000, h:800}, {x: 25, y: 520});
 
 // Build the bottom bit.
 level[1].bricks.push(new Brick({x:-10, y:730}, {w: 810, h:80}));

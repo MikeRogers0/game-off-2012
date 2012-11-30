@@ -1,12 +1,12 @@
 # Description
 
-Fork Adventure is a game where you use forks to build bridges & ledges to get through a level.
+Fork Adventure is a game where you use forks to build bridges & ledges to get through a level. 
 
 # Screenshots
 
-<img src="http://game-off.fullondesign.co.uk/img/screenshots/use-forks-to-climb-stuff.jpg" alt="Use forks to climb stuff" style="border:0;">
+<img src="http://fork-adventure.fullondesign.co.uk/img/screenshots/use-forks-to-climb-stuff.jpg" alt="Use forks to climb stuff" style="border:0;">
 
-<img src="http://game-off.fullondesign.co.uk/img/screenshots/watch-out-for-the-jelly.jpg" alt="Watch out for the jelly" style="border:0;">
+<img src="http://fork-adventure.fullondesign.co.uk/img/screenshots/watch-out-for-the-jelly.jpg" alt="Watch out for the jelly" style="border:0;">
 
 # Open Source stuff used
 
@@ -19,4 +19,6 @@ Fork Adventure is a game where you use forks to build bridges & ledges to get th
  * Leaderboard - Who uses the least forks wins.
  * Multiplayer
  * Enemies
- * Bonus Forks or SSH Keys to pick up.
+ * Bonus Forks or SSH Keys to pick up, maybe they could open doors?
+ * More than 1 level.
+ * An end to level 1.
