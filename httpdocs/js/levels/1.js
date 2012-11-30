@@ -21,11 +21,24 @@ level[1].bricks.push(new Brick({x:2400, y:620}, {w: 200, h:60}));
 
 level[1].bricks.push(new Brick({x:2600, y:560}, {w: 200, h:120}));
 
-level[1].bricks.push(new Brick({x:2560, y:320}, {w: 20, h:60}));
+level[1].bricks.push(new Brick({x:2560, y:430}, {w: 20, h:60}));
 level[1].bricks.push(new Brick({x:2460, y:400}, {w: 120, h:60}));
 
-level[1].bricks.push(new Brick({x:2000, y:400}, {w: 220, h:60}));
+level[1].bricks.push(new Brick({x:1995, y:400}, {w: 220, h:60}));
 
+level[1].bricks.push(new Brick({x:1550, y:380}, {w: 220, h:60}));
 
-// Water in to fill in gaps
+level[1].bricks.push(new Brick({x:1550, y:175}, {w: 20, h:150}));
+
+level[1].bricks.push(new Brick({x:1750, y:110}, {w: 20, h:150}));
+
+level[1].bricks.push(new Brick({x:1250, y:175}, {w: 200, h:20}));
+
+level[1].bricks.push(new Brick({x:1250, y:175}, {w: 200, h:20}));
+
+level[1].bricks.push(new Brick({x:800, y:220}, {w: 200, h:20}));
+
+//level[1].text.push(new Text({x:800, y:120}, {w: 200, h:100}));
+
+// Jelly in to fill in gaps
 level[1].water.push(new Water({x:-10, y:760}, {w: 5610, h:50}));

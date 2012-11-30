@@ -1,5 +1,6 @@
 preLoader.addPattern('brick'); // Preload the patterns.
 preLoader.addPattern('grass');
+preLoader.addPattern('winner');
 
 function Brick(location, size, pattern){
 	this.location = location ? location : {
@@ -44,7 +45,7 @@ Brick.prototype.draw = function(){
 };
 
 /**
- * Scary Stuff class
+ * Water class
  */
 Water = function(location, size, pattern){
 	this.location = location ? location : {
@@ -64,5 +65,29 @@ Water.prototype.draw = function(){
 	this.ctx.fillStyle = '#8BEB4B';
  	this.ctx.strokeStyle = '#000';
  	this.ctx.fillRect(this.location.x, this.location.y, this.size.w, this.size.h);
+
+}
+
+/**
+ * Text class
+ */
+Text = function(location, size, pattern){
+	this.location = location ? location : {
+		x: 800,
+		y: 120
+	};
+	this.size = size ? size : {
+		w: 200,
+		h: 100
+	};
+	this.pattern = pattern ? pattern : 'winning';
+	
+	this.ctx = ctx['level3d'];
+}
+
+Text.prototype.draw = function(){
+	this.ctx.fillStyle = '#8BEB4B';
+ 	this.ctx.strokeStyle = '#000';
+ 	this.ctx.drawImage(objectsImgs['winner'], this.location.x, this.location.y, this.size.w, this.size.h);
 
 }

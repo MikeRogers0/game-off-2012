@@ -22,6 +22,12 @@ Level.prototype.resizeCanvas = function(){
 	}
 }
 
+Level.prototype.rebuild = function(){
+	gameLoop.stop();
+	this.build();
+	gameLoop.run();
+}
+
 Level.prototype.build = function(){
 	this.resizeCanvas();
 	
