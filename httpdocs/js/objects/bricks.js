@@ -1,6 +1,6 @@
 preLoader.addPattern('brick'); // Preload the patterns.
 preLoader.addPattern('grass');
-preLoader.addPattern('winner');
+//preLoader.addPattern('winner');
 
 function Brick(location, size, pattern){
 	this.location = location ? location : {
