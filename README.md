@@ -4,9 +4,9 @@ Fork Adventure is a game where you use forks to build bridges & ledges to get th
 
 # Screenshots
 
-<img src="http://fork-adventure.fullondesign.co.uk/img/screenshots/use-forks-to-climb-stuff.jpg" alt="Use forks to climb stuff" style="border:0;">
+<img src="http://fork-adventure.mikerogers.io/img/screenshots/use-forks-to-climb-stuff.jpg" alt="Use forks to climb stuff" style="border:0;">
 
-<img src="http://fork-adventure.fullondesign.co.uk/img/screenshots/watch-out-for-the-jelly.jpg" alt="Watch out for the jelly" style="border:0;">
+<img src="http://fork-adventure.mikerogers.io/img/screenshots/watch-out-for-the-jelly.jpg" alt="Watch out for the jelly" style="border:0;">
 
 # Open Source stuff used
 
